@@ -1,5 +1,5 @@
-hash: 33942b2d5620ffa6e9f91088f214cf149706bce009905d41030f59a01193b318
-updated: 2016-12-02T16:14:24.073929857-08:00
+hash: fdb8162b933967f7c59413b6ed4aa542a07b7f0b81dd08d3dee1c99bb683365d
+updated: 2016-12-07T13:44:30.391275739-08:00
 imports:
 - name: github.com/asaskevich/govalidator
   version: 7b3beb6df3c42abd3509abfc3bcacc0fbfb7c877
@@ -42,7 +42,7 @@ imports:
 - name: github.com/mitchellh/mapstructure
   version: f3009df150dadf309fdee4a54ed65c124afad715
 - name: github.com/netlify/open-api
-  version: 74247e71fe0e4c0e1d0b5bbc9ef6a2a540699347
+  version: ef84aa1ad38ce0d8fec9f08c74a875c70cef6f87
   subpackages:
   - go/models
   - go/porcelain
