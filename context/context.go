@@ -1,8 +1,7 @@
 package context
 
 import (
-	"context"
-
+	"golang.org/x/net/context"
 	"github.com/netlify/open-api/go/porcelain"
 )
 
