@@ -1,19 +1,11 @@
-# Introduction
+# `netlifyctl`
 
-netlifyctl is a proof of concept to rewrite Netlify's CLI in Go.
-It uses the [OpenAPI](https://github.com/netlify/open-api) definitions
-to interact with Netlify's API.
+Forked from official repo to make it work. 
 
-## Installation
+```
+$ go get github.com/aj0strow/netlifyctl
+```
 
-netlifyctl can only be installed by source for now:
-
-	$ go get github.com/aj0strow/netlifyctl
-
-## Usage
-
-	$ netlifyctl --help
-
-## License
-
-[MIT](LICENSE)
+```
+$ netlifyctl deploy --site-id {uuid} --path dist --access-token {token}
+````
