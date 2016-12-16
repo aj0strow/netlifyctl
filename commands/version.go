@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var Version string
+var Version = "netlifyctl v0.custom"
 
 var versionCmd = &cobra.Command{
 	Run: showVersion,

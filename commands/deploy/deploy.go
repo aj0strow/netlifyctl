@@ -6,29 +6,28 @@ import (
 	"github.com/Sirupsen/logrus"
 
 	"path/filepath"
-	"strings"
 
 	"github.com/aj0strow/netlifyctl/commands/middleware"
 	"github.com/aj0strow/netlifyctl/configuration"
 	"github.com/aj0strow/netlifyctl/context"
-	"github.com/aj0strow/netlifyctl/operations"
 	"github.com/spf13/cobra"
 )
 
 type deployCmd struct {
-	base string
+	path   string
+	siteId string
 }
 
 func Setup() (*cobra.Command, middleware.CommandFunc) {
 	cmd := &deployCmd{}
-	ccmd := &cobra.Command{
+	c := &cobra.Command{
 		Use:   "deploy",
 		Short: "Deploy your site",
 		Long:  "Deploy your site",
 	}
-	ccmd.Flags().StringVarP(&cmd.base, "base-directory", "b", "", "directory to publish")
-
-	return ccmd, cmd.deploySite
+	c.Flags().StringVarP(&cmd.path, "path", "p", "", "path to build directory")
+	c.Flags().StringVarP(&cmd.siteId, "site-id", "s", "", "target site id to deploy")
+	return c, cmd.deploySite
 }
 
 func (*deployCmd) deploySite(ctx context.Context, cmd *cobra.Command, args []string) error {
@@ -38,26 +37,17 @@ func (*deployCmd) deploySite(ctx context.Context, cmd *cobra.Command, args []str
 	}
 	client := context.GetClient(ctx)
 
-	if conf.Settings.ID == "" && operations.ConfirmCreateSite(cmd) {
-		newSite, err := operations.CreateSite(cmd, client, ctx)
-		// Ensure that the site ID is always saved,
-		// even when there is a provision error.
-		if newSite != nil {
-			conf.Settings.ID = newSite.ID
-			configuration.Save(conf)
-		}
-
-		if err != nil {
-			return err
-		}
-
-		fmt.Println("=> Domain ready, deploying assets now")
+	id, err := cmd.Flags().GetString("site-id")
+	if err != nil {
+		return err
 	}
 
-	id := conf.Settings.ID
+	relPath, err := cmd.Flags().GetString("path")
+	if err != nil {
+		return err
+	}
 
-	path := baseDeploy(cmd, conf)
-	configuration.Save(conf)
+	path := filepath.Join(conf.Root(), relPath)
 	logrus.WithFields(logrus.Fields{"site": id, "path": path}).Debug("deploying site")
 
 	d, err := client.DeploySite(ctx, id, path)
@@ -75,33 +65,4 @@ func (*deployCmd) deploySite(ctx context.Context, cmd *cobra.Command, args []str
 	fmt.Printf("=> Done, your website is live in %s\n", d.URL)
 
 	return nil
-}
-
-func baseDeploy(cmd *cobra.Command, conf *configuration.Configuration) string {
-	bd, err := cmd.Flags().GetString("base-directory")
-	if err != nil {
-		logrus.WithError(err).Fatal("Failed to get string flag: 'base-directory'")
-	}
-
-	if bd != "" {
-		return bd
-	}
-	s := conf.Settings
-	path := s.Path
-	if path == "" {
-		path, err = operations.AskForInput("What path would you like deployed?", ".")
-		if err != nil {
-			logrus.WithError(err).Fatal("Failed to get deploy path")
-		}
-
-		s.Path = path
-		logrus.Debugf("Got new path from the user %s", s.Path)
-	}
-
-	if !strings.HasPrefix(s.Path, "/") {
-		path := filepath.Join(conf.Root(), s.Path)
-		logrus.Debugf("Relative path detected, going to deploy: '%s'", path)
-	}
-
-	return path
 }

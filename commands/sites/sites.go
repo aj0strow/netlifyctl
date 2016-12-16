@@ -3,9 +3,9 @@ package sites
 import (
 	"fmt"
 
-	tm "github.com/buger/goterm"
 	"github.com/aj0strow/netlifyctl/commands/middleware"
 	"github.com/aj0strow/netlifyctl/context"
+	tm "github.com/buger/goterm"
 	"github.com/spf13/cobra"
 )
 
