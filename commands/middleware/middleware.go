@@ -15,8 +15,8 @@ import (
 	"github.com/netlify/open-api/go/porcelain"
 	apiContext "github.com/netlify/open-api/go/porcelain/context"
 
-	"github.com/netlify/netlifyctl/auth"
-	"github.com/netlify/netlifyctl/context"
+	"github.com/aj0strow/netlifyctl/auth"
+	"github.com/aj0strow/netlifyctl/context"
 )
 
 const defaultAPIPath = "/api/v1"

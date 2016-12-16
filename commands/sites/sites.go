@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	tm "github.com/buger/goterm"
-	"github.com/netlify/netlifyctl/commands/middleware"
-	"github.com/netlify/netlifyctl/context"
+	"github.com/aj0strow/netlifyctl/commands/middleware"
+	"github.com/aj0strow/netlifyctl/context"
 	"github.com/spf13/cobra"
 )
 

@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/netlify/netlifyctl/commands"
+	"github.com/aj0strow/netlifyctl/commands"
 )
 
 func main() {

@@ -8,7 +8,7 @@ to interact with Netlify's API.
 
 netlifyctl can only be installed by source for now:
 
-	$ go get github.com/netlify/netlifyctl
+	$ go get github.com/aj0strow/netlifyctl
 
 ## Usage
 

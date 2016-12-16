@@ -1,9 +1,9 @@
 package commands
 
 import (
-	"github.com/netlify/netlifyctl/commands/deploy"
-	"github.com/netlify/netlifyctl/commands/middleware"
-	"github.com/netlify/netlifyctl/commands/sites"
+	"github.com/aj0strow/netlifyctl/commands/deploy"
+	"github.com/aj0strow/netlifyctl/commands/middleware"
+	"github.com/aj0strow/netlifyctl/commands/sites"
 	"github.com/spf13/cobra"
 )
 

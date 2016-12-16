@@ -5,8 +5,8 @@ import (
 	"regexp"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/netlify/netlifyctl/auth"
-	"github.com/netlify/netlifyctl/operations"
+	"github.com/aj0strow/netlifyctl/auth"
+	"github.com/aj0strow/netlifyctl/operations"
 	"github.com/spf13/cobra"
 )
 

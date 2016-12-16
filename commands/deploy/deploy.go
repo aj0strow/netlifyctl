@@ -8,10 +8,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/netlify/netlifyctl/commands/middleware"
-	"github.com/netlify/netlifyctl/configuration"
-	"github.com/netlify/netlifyctl/context"
-	"github.com/netlify/netlifyctl/operations"
+	"github.com/aj0strow/netlifyctl/commands/middleware"
+	"github.com/aj0strow/netlifyctl/configuration"
+	"github.com/aj0strow/netlifyctl/context"
+	"github.com/aj0strow/netlifyctl/operations"
 	"github.com/spf13/cobra"
 )
 
